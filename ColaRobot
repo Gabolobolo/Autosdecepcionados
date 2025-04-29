@@ -1,0 +1,63 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class ColaRobot {
+private Queue<Robot> cola;
+
+public ColaRobot() {
+    cola = new LinkedList<>();
+    }
+public void encolarRobot() {
+Robot r1 = new Robot();
+cola.offer(r1);
+
+    cola.offer(new Robot(2, "Optimus Prime", "Autobot", 100, "Lider"));
+    cola.offer(new Robot(3, "Megatron", "Decepticon", 95, "Dominación"));
+    cola.offer(new Robot(4, "Starscream", "Decepticon", 85, "Ataque Aéreo"));
+    cola.offer(new Robot(5, "Ratchet", "Autobot", 70, "Medicina"));
+}
+
+public void mostrar() {
+    for (Robot r : cola) {
+        System.out.println(r.toString());
+    }
+}
+    public void calcularAtaque(){
+    for (Robot r : cola) {
+        double valorAtaque = r.getPoder();
+
+        if (r.getFaccion().equals("Autobot")) {
+            valorAtaque = valorAtaque * 1.25;
+        }else if (r.getFaccion().equals("Decepticon")) {
+            valorAtaque = valorAtaque * 1.10;
+        }
+
+        System.out.println(r.toString() + " Valor de ataque: " + valorAtaque);
+    }
+    }
+
+    public void copiarFuncion(String funcion){
+    Queue<Robot> nuevaCola = new LinkedList<>();
+
+    for (Robot r : cola) {
+        if (r.getFaccion().equals(funcion)) {
+            nuevaCola.offer(r);
+        }
+    }
+
+    System.out.println("--Cola original ---");
+    for (Robot r : cola) {
+        System.out.println(r);
+    }
+
+    System.out.println("--Nueva Cola ---");
+    for (Robot r : nuevaCola) {
+        System.out.println(r);
+    }
+    }
+
+    public Queue<Robot> getCola() {
+        return cola;
+    }
+
+}

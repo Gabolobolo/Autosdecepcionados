@@ -1,0 +1,72 @@
+public class Robot {
+        private int codigo;
+        private String nombre;
+        private String faccion;
+        private int poder;
+        private String funcion;
+
+    public Robot(){
+        this.codigo = 1;
+        this.nombre = "Bumblebee";
+        this.faccion = "Autobot";
+        this.poder =100;
+        this.funcion = "Apoyo";
+    }
+
+        public Robot(int codigo, String nombre, String faccion, int poder, String funcion) {
+            this.codigo = codigo;
+            this.nombre = nombre;
+            this.faccion = faccion;
+            this.poder = poder;
+            this.funcion = funcion;
+        }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getFaccion() {
+        return faccion;
+    }
+
+    public int getPoder() {
+        return poder;
+    }
+
+    public String getFuncion() {
+        return funcion;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setFaccion(String faccion) {
+        this.faccion = faccion;
+    }
+
+    public void setPoder(int poder) {
+        this.poder = poder;
+    }
+
+    public void setFuncion(String funcion) {
+        this.funcion = funcion;
+    }
+
+    @Override
+    public String toString(){
+        return "Código: " + codigo +
+                ", Nombre: " + nombre +
+                ", Facción: " + faccion +
+                ", Poder: " + poder +
+                ", Función: " + funcion + ", ";
+    }
+}

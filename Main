@@ -1,0 +1,20 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        ColaRobot cola = new ColaRobot();
+        cola.encolarRobot();
+
+        System.out.println("-- R1: Robots en cola --");
+        cola.mostrar();
+
+        System.out.println("\n-- R2: Valor de ataque --");
+        cola.calcularAtaque();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\n Ingrese una funcion para copiar a una nueva cola: ");
+        String funcionBuscada = scanner.nextLine();
+
+        cola.copiarFuncion(funcionBuscada);
+    }
+}

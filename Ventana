@@ -1,0 +1,92 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Ventana {
+    private JPanel principal;
+    private JTextArea txtColaOriginal;
+    private JTextArea txtColaNueva;
+    private JButton btnMostrar;
+    private JButton btnCopiar;
+    private JButton btnAtaque;
+
+    private ColaRobot cola = new ColaRobot();
+
+
+    public Ventana() {
+        cola.encolarRobot();
+
+        btnMostrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txtColaOriginal.setText("COLA ORIGINAL:\n");
+                for (Robot r : cola.getCola()) {
+                    txtColaOriginal.append(r.toString() + "\n");
+                }
+                txtColaNueva.setText("");
+            }
+
+        });
+
+        btnAtaque.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                txtColaOriginal.setText("Valor de ataque:\n");
+                for (Robot r : cola.getCola()) {
+                    double ataque = r.getPoder();
+                    if (r.getFaccion().equals("Autobot")) {
+                        ataque *= 1.25;
+                    } else if (r.getFaccion().equals("Decepticon")) {
+                        ataque *= 1.10;
+                    }
+                    txtColaOriginal.append(r.toString() + "  Ataque: " + ataque + "\n");
+                }
+                txtColaNueva.setText("");
+            }
+        });
+
+
+        btnCopiar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String funcion = JOptionPane.showInputDialog(
+                        "Ingrese la función exacta: "
+                );
+
+                if (funcion != null && !funcion.isEmpty()) {
+                    Queue<Robot> copia = new LinkedList<>();
+
+                    for (Robot r : cola.getCola()) {
+                        if (r.getFuncion().equals(funcion)) {
+                            copia.offer(r);
+                        }
+                    }
+
+                    txtColaOriginal.setText("Cola original-----------------------\n");
+                    for (Robot r : cola.getCola()) {
+                        txtColaOriginal.append(r.toString() + "\n");
+                    }
+
+                    txtColaNueva.setText("Nueva cola (Función: " + funcion + ")-----------------------\n");
+                    for (Robot r : copia) {
+                        txtColaNueva.append(r.toString() + "\n");
+                    }
+                }
+            }
+        });
+        principal.addComponentListener(new ComponentAdapter() {
+        });
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Gestor de Transformers");
+        frame.setContentPane(new Ventana().principal);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(850, 600);
+        frame.setVisible(true);
+    }
+}
